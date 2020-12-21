@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/[Game]/GlidingSanta/Scripts/Scenes/GlidingSanInit.unity
+    guid: d201f795557980148a4ab2369862036e
+  - enabled: 1
+    path: Assets/[Game]/GlidingSanta/Scripts/Scenes/GlidingSantaUI.unity
+    guid: e6eab44e4a21bcb4cae97cb93a0bd0e9
+  - enabled: 1
+    path: Assets/[Game]/GlidingSanta/Scripts/Scenes/GlidingSantaGame.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
