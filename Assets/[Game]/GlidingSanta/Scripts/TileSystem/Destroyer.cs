@@ -7,6 +7,7 @@ public class Destroyer : MonoBehaviour
     private void Start()
     {
         transform.position = new Vector3(transform.position.x,transform.position.y,TileManager.Instance.tileDistance*-1f);
+        //Position of the Destroyer cube in the scene has to be negatif tileDistance z position.
     }
     private void Update()
     {
