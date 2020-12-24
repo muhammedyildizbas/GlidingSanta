@@ -34,7 +34,7 @@ public class Character : MonoBehaviour
 
         moveVector.y = verticalVelocity;
 
-        moveVector.z = speed;
+        
 
         controller.Move(moveVector*Time.deltaTime); 
     }

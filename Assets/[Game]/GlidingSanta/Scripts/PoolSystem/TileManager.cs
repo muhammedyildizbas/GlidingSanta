@@ -6,7 +6,7 @@ public class TileManager : Singleton<TileManager>
 {
     public GameObject[] tilePrefabs;
 
-    private int howMuchPrefab = 5;
+    private int howMuchPrefab=5;
 
     public float tileSpeed;
     public float tileDistance;
@@ -23,7 +23,7 @@ public class TileManager : Singleton<TileManager>
         {
             for (int j = 0; j < howMuchPrefab; j++)
             {
-                pool.Add(Instantiate(tilePrefabs[i], transform.position, Quaternion.identity));
+                pool.Add(Instantiate(tilePrefabs[i],transform.position,Quaternion.identity));
 
                 pool[pool.Count - 1].SetActive(false);
             }
@@ -32,7 +32,7 @@ public class TileManager : Singleton<TileManager>
 
         for (int i = 0; i < 5; i++)
         {
-            SpawnTile(i * tileDistance);
+            SpawnTile(i*tileDistance);
         }
         //For the prefab positions to be spaced.
         //And because of the for loop we call SpawnTile 5 times so there will be 5 active prefab when we use "pool[randomTile].SetActive(true);"
@@ -41,7 +41,7 @@ public class TileManager : Singleton<TileManager>
     private void SpawnTile(float replacePosition)
     {
         int randomTile = Random.Range(0, pool.Count - 1);
-
+     
         pool[randomTile].SetActive(true);
         //SetActive random prefab in pool.
         pool[randomTile].transform.position = Vector3.forward * replacePosition;
@@ -57,14 +57,14 @@ public class TileManager : Singleton<TileManager>
             return;
         //Check
         pool.Add(deletedTile);
-
+        
         activeTiles.Remove(deletedTile);
 
         deletedTile.SetActive(false);
 
-        SpawnTile(tileDistance * 4f);
+        SpawnTile(tileDistance*4f);
         //When DeleteTile called we have to callback SpawnTile for making a loop.
         //With this code next prefab position will be end of the prefabs.
     }
-
+    
 }
