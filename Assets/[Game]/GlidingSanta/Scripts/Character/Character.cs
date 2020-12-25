@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    Rigidbody rigidbody;
+    public Rigidbody Rigidbody { get { return (rigidbody == null) ? rigidbody = GetComponent<Rigidbody>() : rigidbody; } }
+
+
     private Vector3 moveVector;
     public float speed ;
     private float verticalVelocity = 0.0f;
@@ -34,9 +38,9 @@ public class Character : MonoBehaviour
 
         moveVector.y = verticalVelocity;
 
-        
+        Rigidbody.velocity = (moveVector) * Time.deltaTime * 400f;
 
-        controller.Move(moveVector*Time.deltaTime); 
+        //controller.Move(moveVector*Time.deltaTime); 
     }
 
     #region Collectable Trigger
@@ -47,10 +51,14 @@ public class Character : MonoBehaviour
 
         if (collectedObj != null)
         {
+
+
+
             collectedObj.CollectAndText();
+
         }
 
-
+        
 
     }
 

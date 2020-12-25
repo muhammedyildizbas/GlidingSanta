@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Star : CollectableBase
+public class Present : CollectableBase
 {
-    int starsPoint = 5;
+
+    
+
+    int presentScore = 5;
     public override void CollectAndText()
     {
-        CollectablesText.Instance.UpdateCollectionText(starsPoint);
+        
+
         base.Destroy();
+        CollectablesText.Instance.UpdateCollectionText(presentScore);
     }
 
 
