@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Present : CollectableBase
+public class Stick : CollectableBase
 {
-
     Vector3 rotation = new Vector3(0, 180, 0);
 
     private void Update()
@@ -12,13 +11,14 @@ public class Present : CollectableBase
         transform.Rotate(rotation * Time.deltaTime);
     }
 
-    int presentScore = 5;
+
+    int stickScore = 1;
     public override void CollectAndText()
     {
-        
+
 
         base.Destroy();
-        CollectablesText.Instance.UpdateCollectionText(presentScore);
+        CollectablesText.Instance.UpdateCollectionText(stickScore);
     }
 
 
