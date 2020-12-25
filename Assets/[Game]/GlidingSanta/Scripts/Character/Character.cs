@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    Rigidbody rigidbody;
-    public Rigidbody Rigidbody { get { return (rigidbody == null) ? rigidbody = GetComponent<Rigidbody>() : rigidbody; } }
+    Rigidbody _rigidbody;
+    public Rigidbody Rigidbody { get { return (_rigidbody == null) ? _rigidbody = GetComponent<Rigidbody>() : _rigidbody; } }
 
 
     private Vector3 moveVector;
@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     private CharacterController controller;
     //private float gravity = 12.0f;
 
-
+    public GameObject particles; //particle sistem için
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -41,6 +41,16 @@ public class Character : MonoBehaviour
         Rigidbody.velocity = (moveVector) * Time.deltaTime * 400f;
 
         //controller.Move(moveVector*Time.deltaTime); 
+
+
+
+
+
+
+
+
+
+
     }
 
     #region Collectable Trigger
@@ -51,11 +61,11 @@ public class Character : MonoBehaviour
 
         if (collectedObj != null)
         {
-
-
+            GameObject particle = Instantiate(particles, transform.position + new Vector3(0,0,5),Quaternion.identity);
+            particle.GetComponent<ParticleSystem>().Play();
 
             collectedObj.CollectAndText();
-
+            Destroy(particle.gameObject,1);
         }
 
         

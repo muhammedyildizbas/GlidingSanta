@@ -11,6 +11,9 @@ public class CollectablesText : Singleton<CollectablesText>
 
     int score = 0;
 
+
+
+
     public void UpdateCollectionText(int number)
     {
         score += number;

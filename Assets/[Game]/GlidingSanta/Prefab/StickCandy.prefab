@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229768024609733844}
   - component: {fileID: 7011323548312309628}
+  - component: {fileID: 1972423687544774378}
   m_Layer: 0
   m_Name: StickCandy
   m_TagString: Untagged
@@ -46,6 +47,18 @@ CapsuleCollider:
   m_Height: 4.5389967
   m_Direction: 1
   m_Center: {x: 0.022646964, y: -1.3096747, z: 0}
+--- !u!114 &1972423687544774378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673889177547557849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06520e2834798564a92958661e94b598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4466643281192918826
 PrefabInstance:
   m_ObjectHideFlags: 0
