@@ -51,7 +51,6 @@ public class Character : MonoBehaviour
         }
         if(moveVector.x < 0)
         {
-            //TargetAngle = new Vector3(transform.rotation.x, BendLeft, transform.rotation.z);
             CurrentAngle = new Vector3(
                 Mathf.LerpAngle(CurrentAngle.x, 0, Time.deltaTime * AngleSpeed),
                 Mathf.LerpAngle(CurrentAngle.y, 0, Time.deltaTime * AngleSpeed),
@@ -71,7 +70,7 @@ public class Character : MonoBehaviour
 
     IEnumerator WaitForStartCoroutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
     }
 
