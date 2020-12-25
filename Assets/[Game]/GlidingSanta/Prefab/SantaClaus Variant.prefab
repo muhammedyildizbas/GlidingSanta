@@ -85,7 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bbe38e5017e4f6eb0cc776f8a2c639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AngleSpeed: 0
   speed: 20
+  particles: {fileID: 0}
 --- !u!1001 &4433890557376817692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,14 +218,15 @@ PrefabInstance:
     - target: {fileID: 8622530670846373209, guid: c73f11c7efd75c44ba020cdfddad630e,
         type: 3}
       propertyPath: m_Name
-      value: SantaClaus
+      value: SantaClaus Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8622530670846373209, guid: c73f11c7efd75c44ba020cdfddad630e,
         type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3420549815832359472, guid: c73f11c7efd75c44ba020cdfddad630e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c73f11c7efd75c44ba020cdfddad630e, type: 3}
 --- !u!1 &5341610068302497605 stripped
 GameObject:

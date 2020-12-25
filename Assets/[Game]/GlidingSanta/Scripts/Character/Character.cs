@@ -9,47 +9,69 @@ public class Character : MonoBehaviour
 
 
     private Vector3 moveVector;
-    public float speed ;
-    private float verticalVelocity = 0.0f;
+    private Vector3 CurrentAngle;
+    private Vector3 TargetForThrow;
+    public float speed;
+    public float ThrowSpeed = 5f;
+    public float AngleSpeed = 0;
+  
     private CharacterController controller;
-    //private float gravity = 12.0f;
 
     public GameObject particles; //particle sistem için
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        
+        CurrentAngle = transform.eulerAngles;
+        TargetForThrow = new Vector3(0f, 35f, 0f);
     }
     private void Update()
     {
-        moveVector = Vector3.zero;
+        ThrowPlayerAtStart();
+        StartCoroutine(WaitForStartCoroutine());
+        Movement();
 
-        /*if(controller.isGrounded)
-         {
-             verticalVelocity = 0.5f;
-         }
-         else
-         {
-             verticalVelocity -= gravity-Time.deltaTime;
-         }*/
+    }
 
-        
-        moveVector.x = Input.GetAxisRaw("Horizontal")*speed;
+    public void Movement()
+    {
 
-        moveVector.y = verticalVelocity;
+        moveVector.x = Input.GetAxisRaw("Horizontal") * speed;
+        Rigidbody.velocity = (moveVector) * Time.deltaTime * speed;
 
-        Rigidbody.velocity = (moveVector) * Time.deltaTime * 400f;
+        if(moveVector.x > 0)
+        {
+            //TargetAngle = new Vector3(transform.rotation.x, BendRight, transform.rotation.z);
+            CurrentAngle = new Vector3(
+                Mathf.LerpAngle(CurrentAngle.x, 0, Time.deltaTime * AngleSpeed),
+                Mathf.LerpAngle(CurrentAngle.y, 0f, Time.deltaTime * AngleSpeed),
+                Mathf.LerpAngle(CurrentAngle.z, -40f, Time.deltaTime * AngleSpeed)
+                );
+            transform.eulerAngles = CurrentAngle;
 
-        //controller.Move(moveVector*Time.deltaTime); 
+        }
+        if(moveVector.x < 0)
+        {
+            //TargetAngle = new Vector3(transform.rotation.x, BendLeft, transform.rotation.z);
+            CurrentAngle = new Vector3(
+                Mathf.LerpAngle(CurrentAngle.x, 0, Time.deltaTime * AngleSpeed),
+                Mathf.LerpAngle(CurrentAngle.y, 0, Time.deltaTime * AngleSpeed),
+                Mathf.LerpAngle(CurrentAngle.z, 40f, Time.deltaTime * AngleSpeed)
+                );
 
+            transform.eulerAngles = CurrentAngle;
 
+        }
 
+    }
 
+    public void ThrowPlayerAtStart()
+    {
+        transform.position = Vector3.Lerp(transform.position, TargetForThrow, ThrowSpeed * Time.deltaTime);
+    }
 
-
-
-
-
+    IEnumerator WaitForStartCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
 
     }
 
