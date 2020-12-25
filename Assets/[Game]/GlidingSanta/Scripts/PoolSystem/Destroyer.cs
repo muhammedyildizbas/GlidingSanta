@@ -16,7 +16,6 @@ public class Destroyer : MonoBehaviour
         if (Vector3.Dot(toTarget, transform.forward) < 0)
         {
             TileManager.Instance.DeleteTile(TileManager.Instance.activeTiles[0]);
-            Debug.Log("Target is in front of this game object.");
         }
         
     }

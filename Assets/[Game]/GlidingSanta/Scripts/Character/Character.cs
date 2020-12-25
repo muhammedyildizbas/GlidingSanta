@@ -38,4 +38,22 @@ public class Character : MonoBehaviour
 
         controller.Move(moveVector*Time.deltaTime); 
     }
+
+    #region Collectable Trigger
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ICollectable collectedObj = other.GetComponent<ICollectable>();
+
+        if (collectedObj != null)
+        {
+            collectedObj.CollectAndText();
+        }
+
+
+
+    }
+
+    #endregion
+
 }
