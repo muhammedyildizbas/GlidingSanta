@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605864374}
   - component: {fileID: 605864373}
+  - component: {fileID: 605864375}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -147,12 +148,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 605864372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99630ab4bfb90464887989bada52b44d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f610240246384d47b3ff5e4fa24f476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSwipeLength: 0.5
-  triggerSwipeAtMinLength: 0
-  useEightDirections: 0
+  skor: 0
 --- !u!4 &605864374
 Transform:
   m_ObjectHideFlags: 0
@@ -167,6 +166,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &605864375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605864372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e864bcbbd4cedae439c5e794c0ee08d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBoost: 999
 --- !u!1 &1511453640
 GameObject:
   m_ObjectHideFlags: 0
