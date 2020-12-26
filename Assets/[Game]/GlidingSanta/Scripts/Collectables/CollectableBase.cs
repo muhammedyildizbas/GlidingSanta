@@ -4,10 +4,17 @@ using UnityEngine;
 
 public abstract class CollectableBase : MonoBehaviour, ICollectable
 {
+
+
+    
+
+
     public abstract void CollectAndText();
 
     public virtual void Destroy()
     {
+
+
         Destroy(gameObject);
     }
 }

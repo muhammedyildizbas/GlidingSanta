@@ -4,23 +4,10 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    private bool isGameStarted;
-    public bool IsGameStarted { get { return isGameStarted; } private set { isGameStarted = value; } }
-
-    public void StartGame()
+    public float skor;
+    private void OnEnable()
     {
-        if (IsGameStarted)
-            return;
+        skor = 0;
 
-        IsGameStarted = true;
-        EventManager.OnGameStart.Invoke();
-    }
-    public void EndGame()
-    {
-        if (!IsGameStarted)
-            return;
-
-        IsGameStarted = false;
-        EventManager.OnGameEnd.Invoke();
     }
 }

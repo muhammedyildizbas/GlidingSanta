@@ -8,11 +8,10 @@ public class CollectablesText : Singleton<CollectablesText>
     Text text;
     Text Text { get { return (text == null) ? text = GetComponent<Text>() : text; } }
 
-    int score = 0;
-
-    public void UpdateCollectionText(int number)
+    public void UpdateCollectionText(float number)
     {
-        score += number;
-        Text.text = "Score: " + score;
+        GameManager.Instance.skor += number;
+        Text.text = "Score: " + GameManager.Instance.skor;
+        BoostManager.Instance.Boost += number;
     }
 }
