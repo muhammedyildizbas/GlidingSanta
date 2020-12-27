@@ -50,13 +50,10 @@ public class InputManager : Singleton<InputManager>
 
     private void Update()
     {
-        if (EventSystem.current == null) return;
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        //if (EventSystem.current == null) return;
+        //if (EventSystem.current.IsPointerOverGameObject()) return;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            LevelManager.Instance.StartLevel();
-        }
+       
 
         TapInput();
         SwipeInput();
