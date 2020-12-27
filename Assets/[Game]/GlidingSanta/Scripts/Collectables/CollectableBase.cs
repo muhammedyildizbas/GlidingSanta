@@ -2,13 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CollectableBase : MonoBehaviour, ICollectable
+public class CollectableBase : MonoBehaviour, ICollectable
 {
-    public abstract void CollectAndText();
+    public int points;
 
-    public virtual void Destroy()
+    private void Update()
     {
+        transform.Rotate(Vector3.up * 180 * Time.deltaTime);
+    }
+    public void Collect()
+    {
+        CollectablesText.Instance.UpdateCollectionText(points);
+        Destroy();
+    }
 
+    public void Destroy()
+    {
+        CollectableManager.Instance.activePresents.Remove(gameObject);
         Destroy(gameObject);
     }
 }
