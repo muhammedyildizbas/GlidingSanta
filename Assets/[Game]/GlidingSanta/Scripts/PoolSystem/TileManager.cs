@@ -83,8 +83,6 @@ public class TileManager : Singleton<TileManager>
         //When DeleteTile called we have to callback SpawnTile for making a loop.
         //With this code next prefab position will be end of the prefabs.
         SpawnTile(tileDistance*4f, true);
-        
-        
     }
     
 }

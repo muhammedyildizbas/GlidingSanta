@@ -4,8 +4,6 @@ using UnityEngine;
 
 public interface ICollectable
 {
-
-    void CollectAndText();
+    void Collect();
     void Destroy();
-
 }

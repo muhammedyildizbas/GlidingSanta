@@ -1,45 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Character : MonoBehaviour
 {
     Rigidbody _rigidbody;
-    public Rigidbody Rigidbody { get { return (_rigidbody == null) ? _rigidbody = GetComponent<Rigidbody>() : _rigidbody; } }
-    
     bool gameStarted = false;
-    bool isControllable = true;
-
+    public float timer=3f;
+    public Rigidbody Rigidbody { get { return (_rigidbody == null) ? _rigidbody = GetComponent<Rigidbody>() : _rigidbody; } }
+    public float screenLimit=7;
     Touch touch;
-
     private Vector3 moveVector;
     private Vector3 CurrentAngle;
     private Vector3 TargetForThrow;
-
-    public float screenLimit = 7;
-    public float timer = 3f;
     public float speed;
     public float ThrowSpeed = 5f;
     public float AngleSpeed = 0;
-
-    private AnimationController AnimationController;
+  
     private CharacterController controller;
 
-    [HideInInspector]
-    public UnityEvent OnCharacterHit = new UnityEvent();
-
     public GameObject particles; //particle sistem için
+    private bool isControllable;
+
     private void Start()
     {
         StartCoroutine(WaitForStartCoroutine());
- 
+        isControllable = true;
         controller = GetComponent<CharacterController>();
 
         CurrentAngle = transform.eulerAngles;
         TargetForThrow = new Vector3(0f, 35f, 0f);
-
-        AnimationController = GetComponent<AnimationController>();
     }
     private void Update()
     {
@@ -54,8 +44,15 @@ public class Character : MonoBehaviour
     }
     public void BoostController()
     {
+        if (!isControllable)
+            return;
         if (BoostManager.Instance.Boost <= 0)
-            Debug.Log("EndGame");
+        {
+            TileManager.Instance.tileSpeed = 0;
+            FallDown();
+            Debug.Log("death");
+            FindObjectOfType<CanvasController>().GameOverPanel();
+        }
         else
             BoostManager.Instance.Boost -= Time.deltaTime;
     }
@@ -63,38 +60,33 @@ public class Character : MonoBehaviour
     #region Movement
     public void Movement()
     {
-        if (!isControllable)
-            return;
-        else
+
+        moveVector.x = Input.GetAxisRaw("Horizontal");
+        Rigidbody.velocity = (moveVector) * Time.deltaTime * speed;
+
+        if(moveVector.x > 0)
         {
-            moveVector.x = Input.GetAxisRaw("Horizontal") * speed;
-            Rigidbody.velocity = (moveVector) * Time.deltaTime * speed;
+            //TargetAngle = new Vector3(transform.rotation.x, BendRight, transform.rotation.z);
+            CurrentAngle = new Vector3(
+                Mathf.LerpAngle(CurrentAngle.x, 0, Time.deltaTime * AngleSpeed),
+                Mathf.LerpAngle(CurrentAngle.y, 0f, Time.deltaTime * AngleSpeed),
+                Mathf.LerpAngle(CurrentAngle.z, -40f, Time.deltaTime * AngleSpeed)
+                );
+            transform.eulerAngles = CurrentAngle;
 
-            if (moveVector.x > 0)
-            {
-                //TargetAngle = new Vector3(transform.rotation.x, BendRight, transform.rotation.z);
-                CurrentAngle = new Vector3(
-                    Mathf.LerpAngle(CurrentAngle.x, 0, Time.deltaTime * AngleSpeed),
-                    Mathf.LerpAngle(CurrentAngle.y, 0f, Time.deltaTime * AngleSpeed),
-                    Mathf.LerpAngle(CurrentAngle.z, -40f, Time.deltaTime * AngleSpeed)
-                    );
-                transform.eulerAngles = CurrentAngle;
-
-            }
-            if (moveVector.x < 0)
-            {
-                //TargetAngle = new Vector3(transform.rotation.x, BendLeft, transform.rotation.z);
-                CurrentAngle = new Vector3(
-                    Mathf.LerpAngle(CurrentAngle.x, 0, Time.deltaTime * AngleSpeed),
-                    Mathf.LerpAngle(CurrentAngle.y, 0, Time.deltaTime * AngleSpeed),
-                    Mathf.LerpAngle(CurrentAngle.z, 40f, Time.deltaTime * AngleSpeed)
-                    );
-
-                transform.eulerAngles = CurrentAngle;
-
-            }
         }
-        
+        if(moveVector.x < 0)
+        {
+            //TargetAngle = new Vector3(transform.rotation.x, BendLeft, transform.rotation.z);
+            CurrentAngle = new Vector3(
+                Mathf.LerpAngle(CurrentAngle.x, 0, Time.deltaTime * AngleSpeed),
+                Mathf.LerpAngle(CurrentAngle.y, 0, Time.deltaTime * AngleSpeed),
+                Mathf.LerpAngle(CurrentAngle.z, 40f, Time.deltaTime * AngleSpeed)
+                );
+
+            transform.eulerAngles = CurrentAngle;
+
+        }
         #region Mobile
         if (Input.touchCount > 0)
         {
@@ -131,27 +123,28 @@ public class Character : MonoBehaviour
 
         if (collectedObj != null)
         {
+            
             GameObject particle = Instantiate(particles, transform.position + new Vector3(0,0,5),Quaternion.identity);
             particle.GetComponent<ParticleSystem>().Play();
-            collectedObj.CollectAndText();
+
+            collectedObj.Collect();
             Destroy(particle.gameObject,1);
         }
-
         if (other.gameObject.tag == "Wall")
         {
-            
+            isControllable = false;
+            TileManager.Instance.tileSpeed = 0;
             FallDown();
+            Debug.Log("death");
+            FindObjectOfType<CanvasController>().GameOverPanel();
             
         }
 
     }
-
-    //Çarpma tetikleme
-    void FallDown()
+    public void FallDown()
     {
-        isControllable = false;
-        TileManager.Instance.tileSpeed = 0;
-        GetComponent<AnimationController>().InvokeTrigger("Death");
+        //transform.position =Vector3.Lerp(transform.position,fallTarget,Time.deltaTime);
+        Debug.Log("deathanimation");
     }
 
     #endregion
