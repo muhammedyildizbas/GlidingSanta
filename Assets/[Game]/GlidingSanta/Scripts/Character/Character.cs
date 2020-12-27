@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
     private CharacterController controller;
 
     public GameObject particles; //particle sistem için
-    private bool isControllable;
+    public bool isControllable;
 
     private void Start()
     {
@@ -143,8 +143,9 @@ public class Character : MonoBehaviour
     }
     public void FallDown()
     {
-        //transform.position =Vector3.Lerp(transform.position,fallTarget,Time.deltaTime);
-        Debug.Log("deathanimation");
+        GetComponent<AnimationController>().InvokeTrigger("Death");
+        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 0, transform.position.z), 5f);
+        GetComponent<Rigidbody>().useGravity = true;
     }
 
     #endregion
