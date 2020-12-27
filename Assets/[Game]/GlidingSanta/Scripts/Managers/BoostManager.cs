@@ -6,6 +6,8 @@ public class BoostManager : Singleton<BoostManager>
 {
     public float maxBoost;
     private float boost;
+    
+   
     public float Boost
     {
         get { return boost; }
@@ -20,5 +22,6 @@ public class BoostManager : Singleton<BoostManager>
     private void OnEnable()
     {
         boost = maxBoost;
+       
     }
 }

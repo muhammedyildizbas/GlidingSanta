@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 605864374}
   - component: {fileID: 605864373}
   - component: {fileID: 605864375}
+  - component: {fileID: 605864377}
+  - component: {fileID: 605864376}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -179,6 +181,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBoost: 20
+--- !u!114 &605864376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605864372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639aa739e0d9e7a4d8da90dd6752563e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Presents:
+  - {fileID: 3004904992909610813, guid: e44d393c94fb14b4da689817d9fe86f1, type: 3}
+  - {fileID: 3238102725378215511, guid: 7c88f45b9bbd32c42bd8c11cac862b65, type: 3}
+  - {fileID: 5673889177547557849, guid: cb711921040efc141be6966bbda1a8d2, type: 3}
+  - {fileID: 8632628080642180044, guid: 25575f359070a2549953591eb9881753, type: 3}
+--- !u!114 &605864377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605864372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d53d1a4f86507947b872aa664e156d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lanes:
+  - {fileID: 2449284021619341305, guid: 22636ed34dde2cb4eaea0719305d9e58, type: 3}
+  - {fileID: 2886394273826352214, guid: d9e924c7d4a907a4daddf0b3c4661b06, type: 3}
+  - {fileID: 6892732348629354754, guid: 37f12c23d58c1964fafcf25f0d903a3d, type: 3}
 --- !u!1 &1511453640
 GameObject:
   m_ObjectHideFlags: 0

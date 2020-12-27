@@ -5,9 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     Rigidbody _rigidbody;
-    //Vector3 fallTarget;
-
-    bool gameStarted =false;
+    bool gameStarted = false;
     public float timer=3f;
     public Rigidbody Rigidbody { get { return (_rigidbody == null) ? _rigidbody = GetComponent<Rigidbody>() : _rigidbody; } }
     public float screenLimit=7;
@@ -25,17 +23,19 @@ public class Character : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaitForStartCoroutine());
-        //fallTarget = new Vector3(transform.position.x,0,transform.position.z);
+ 
         controller = GetComponent<CharacterController>();
+
         CurrentAngle = transform.eulerAngles;
         TargetForThrow = new Vector3(0f, 35f, 0f);
     }
     private void Update()
     {
-        ThrowPlayerAtStart();
-        
-        if (!gameStarted)
-            return;
+       ThrowPlayerAtStart();
+
+       if (!gameStarted)
+           return;
+ 
         Movement();
         BoostController();
 
@@ -44,10 +44,10 @@ public class Character : MonoBehaviour
     {
         if (BoostManager.Instance.Boost <= 0)
             Debug.Log("EndGame");
-        //transform.position.y=0;
         else
             BoostManager.Instance.Boost -= Time.deltaTime;
     }
+
     #region Movement
     public void Movement()
     {

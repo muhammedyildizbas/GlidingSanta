@@ -32,17 +32,18 @@ public class TileManager : Singleton<TileManager>
 
         for (int i = 0; i < 5; i++)
         {
-            SpawnTile(i*tileDistance);
+            SpawnTile(i*tileDistance, false);
         }
         //For the prefab positions to be spaced.
         //And because of the for loop we call SpawnTile 5 times so there will be 5 active prefab when we use "pool[randomTile].SetActive(true);"
     }
 
-    private void SpawnTile(float replacePosition)
+    private void SpawnTile(float replacePosition, bool spawnCollectable)
     {
         int randomTile = Random.Range(0, pool.Count - 1);
-     
+        
         pool[randomTile].SetActive(true);
+        //EventManager.OnObstacleCreated.Invoke();
         //SetActive random prefab in pool.
         pool[randomTile].transform.position = Vector3.forward * replacePosition;
         //This is for the position of the prefab that we activated
@@ -50,6 +51,23 @@ public class TileManager : Singleton<TileManager>
         //Adding Activated prefabs in the pool List to activeTiles List
         pool.RemoveAt(randomTile);
         //Remove active prefabs in the pool List.
+
+        if (spawnCollectable)
+        {
+            if(activeTiles[activeTiles.Count -1].tag == "Right")
+            {
+                CollectableManager.Instance.CreateStars(2);
+            }
+            else if (activeTiles[activeTiles.Count - 1].tag == "Left")
+            {
+                CollectableManager.Instance.CreateStars(0);
+            }
+            else if (activeTiles[activeTiles.Count - 1].tag == "Middle")
+            {
+                CollectableManager.Instance.CreateStars(1);
+            }
+        }
+
     }
     public void DeleteTile(GameObject deletedTile)
     {
@@ -62,9 +80,11 @@ public class TileManager : Singleton<TileManager>
 
         deletedTile.SetActive(false);
 
-        SpawnTile(tileDistance*4f);
         //When DeleteTile called we have to callback SpawnTile for making a loop.
         //With this code next prefab position will be end of the prefabs.
+        SpawnTile(tileDistance*4f, true);
+        
+        
     }
     
 }

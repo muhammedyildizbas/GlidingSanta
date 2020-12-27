@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class TrackManager : Singleton<TrackManager>
 {
- 
+    public List<Transform> Lanes;
 }
