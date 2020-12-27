@@ -67,8 +67,8 @@ public class TileManager : Singleton<TileManager>
                 CollectableManager.Instance.CreateStars(1);
             }
         }
-
     }
+
     public void DeleteTile(GameObject deletedTile)
     {
         if (!activeTiles.Contains(deletedTile))
