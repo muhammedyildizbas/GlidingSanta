@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     bool gameStarted = false;
     public float timer = 3f;
     public GameObject CannonPart;
+    public bool IsClicked= false;
     public GameObject WindPart;
     public Rigidbody Rigidbody { get { return (_rigidbody == null) ? _rigidbody = GetComponent<Rigidbody>() : _rigidbody; } }
     public float screenLimit = 7;
@@ -156,19 +157,16 @@ public class Character : MonoBehaviour
     }
     public void Starter()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && IsClicked==false )
         {
             GameManager.Instance.isClickedForStartGame = true;
             GetComponent<AnimationController>().InvokeTrigger("Start");
             Instantiate(CannonPart, transform.position, Quaternion.identity);
             Instantiate(WindPart, transform.position, Quaternion.identity,transform);
-
-
-
+            IsClicked = true;
         }
 
     }
     #endregion
-
 
 }
