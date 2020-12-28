@@ -142,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012365179174, guid: e5203c7b31e354ee6983ea4814113714, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.11
+      value: -11.41
       objectReference: {fileID: 0}
     - target: {fileID: 4000012365179174, guid: e5203c7b31e354ee6983ea4814113714, type: 3}
       propertyPath: m_LocalRotation.x
@@ -178,11 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012365179174, guid: e5203c7b31e354ee6983ea4814113714, type: 3}
       propertyPath: m_LocalScale.x
-      value: 18.175564
+      value: 18.175573
       objectReference: {fileID: 0}
     - target: {fileID: 4000012365179174, guid: e5203c7b31e354ee6983ea4814113714, type: 3}
       propertyPath: m_LocalScale.z
-      value: 31.535824
+      value: 31.688
       objectReference: {fileID: 0}
     - target: {fileID: 4000012365179174, guid: e5203c7b31e354ee6983ea4814113714, type: 3}
       propertyPath: m_LocalScale.y
@@ -1920,7 +1920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 41682293, guid: 0cf1da36dfe8293489e81ca3eed34504, type: 3}
       propertyPath: speed
-      value: 3000
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 41682293, guid: 0cf1da36dfe8293489e81ca3eed34504, type: 3}
       propertyPath: particles
