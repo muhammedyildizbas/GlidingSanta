@@ -158,6 +158,7 @@ public class Character : MonoBehaviour
         {
             GameManager.Instance.isClickedForStartGame = true;
             GetComponent<AnimationController>().InvokeTrigger("Start");
+            //instantiate particles
         }
     }
     #endregion
