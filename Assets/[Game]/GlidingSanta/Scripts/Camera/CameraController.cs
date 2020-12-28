@@ -8,13 +8,20 @@ public class CameraController : MonoBehaviour
     private Vector3 startOffset;
     private Vector3 moveVector;
 
+    Character character;
+
     private void Start()
     { 
         lookAt = GameObject.FindGameObjectWithTag("Player").transform;
         startOffset = transform.position - lookAt.position;
+        character = FindObjectOfType<Character>();
     }
     private void Update()
     {
+        if (!character.isControllable)
+        {
+            return;
+        }
         moveVector = lookAt.position + startOffset;
 
         moveVector.x = 0;

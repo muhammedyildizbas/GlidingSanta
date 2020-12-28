@@ -67,8 +67,8 @@ public class TileManager : Singleton<TileManager>
                 CollectableManager.Instance.CreateStars(1);
             }
         }
-
     }
+
     public void DeleteTile(GameObject deletedTile)
     {
         if (!activeTiles.Contains(deletedTile))
@@ -83,8 +83,6 @@ public class TileManager : Singleton<TileManager>
         //When DeleteTile called we have to callback SpawnTile for making a loop.
         //With this code next prefab position will be end of the prefabs.
         SpawnTile(tileDistance*4f, true);
-        
-        
     }
     
 }

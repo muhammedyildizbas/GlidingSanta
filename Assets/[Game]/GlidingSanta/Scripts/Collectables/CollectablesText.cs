@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CollectablesText : Singleton<CollectablesText>
 {
-    Text text;
-    Text Text { get { return (text == null) ? text = GetComponent<Text>() : text; } }
+    TextMeshProUGUI text;
+    TextMeshProUGUI Text { get { return (text == null) ? text = GetComponentInChildren<TextMeshProUGUI>() : text; } }
 
     public void UpdateCollectionText(float number)
     {
         GameManager.Instance.skor += number;
-        Text.text = "Score: " + GameManager.Instance.skor;
+        Text.SetText(GameManager.Instance.skor.ToString());
         BoostManager.Instance.Boost += number;
     }
 }

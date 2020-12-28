@@ -15,22 +15,10 @@ public class MenuLevelManager : MonoBehaviour
     [SerializeField]
     public GameObject playButon;
 
-
-    void Awake()
-    {
-
-    }
     void Start()
     {
-        //noelBabaImage.transform.localScale = new Vector3(1f, 1f, 1f);
-      
-        {
-         
             StartCoroutine(noelBaba());
-        }
-        
     }
-
     public void playGame(int sceneid)
     {
         SceneManager.LoadScene(sceneid);
@@ -39,8 +27,6 @@ public class MenuLevelManager : MonoBehaviour
     IEnumerator noelBaba()
     {
         binaImage.transform.GetComponent<RectTransform>().DOMoveY(950f, 0.5f).SetEase(Ease.InBack);
-
-       
         noelBabaImage.GetComponent<RectTransform>().DOScale(0, 0.3f).SetEase(Ease.InBack);
         yield return new WaitForSeconds(0.6f);
         noelBabaImage.GetComponent<RectTransform>().DOScale(0.9f, 0.5f).SetEase(Ease.OutBack);
@@ -50,10 +36,5 @@ public class MenuLevelManager : MonoBehaviour
        playButon.GetComponent<RectTransform>().DOScale(0.9f, 0.2f).SetEase(Ease.OutBack);
         yield return new WaitForSeconds(0.2f);
 
-    }
-    // Update is called once per frame
-    void Update()
-    {
-       
     }
 }

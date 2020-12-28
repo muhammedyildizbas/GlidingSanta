@@ -20,10 +20,12 @@ public class Character : MonoBehaviour
     private CharacterController controller;
 
     public GameObject particles; //particle sistem için
+    public bool isControllable;
+
     private void Start()
     {
         StartCoroutine(WaitForStartCoroutine());
- 
+        isControllable = true;
         controller = GetComponent<CharacterController>();
 
         CurrentAngle = transform.eulerAngles;
@@ -42,8 +44,15 @@ public class Character : MonoBehaviour
     }
     public void BoostController()
     {
+        if (!isControllable)
+            return;
         if (BoostManager.Instance.Boost <= 0)
-            Debug.Log("EndGame");
+        {
+            TileManager.Instance.tileSpeed = 0;
+            FallDown();
+            Debug.Log("death");
+            FindObjectOfType<CanvasController>().GameOverPanel();
+        }
         else
             BoostManager.Instance.Boost -= Time.deltaTime;
     }
@@ -52,7 +61,7 @@ public class Character : MonoBehaviour
     public void Movement()
     {
 
-        moveVector.x = Input.GetAxisRaw("Horizontal") * speed;
+        moveVector.x = Input.GetAxisRaw("Horizontal");
         Rigidbody.velocity = (moveVector) * Time.deltaTime * speed;
 
         if(moveVector.x > 0)
@@ -118,22 +127,25 @@ public class Character : MonoBehaviour
             GameObject particle = Instantiate(particles, transform.position + new Vector3(0,0,5),Quaternion.identity);
             particle.GetComponent<ParticleSystem>().Play();
 
-            collectedObj.CollectAndText();
+            collectedObj.Collect();
             Destroy(particle.gameObject,1);
         }
         if (other.gameObject.tag == "Wall")
         {
+            isControllable = false;
             TileManager.Instance.tileSpeed = 0;
             FallDown();
             Debug.Log("death");
+            FindObjectOfType<CanvasController>().GameOverPanel();
             
         }
 
     }
     public void FallDown()
     {
-        //transform.position =Vector3.Lerp(transform.position,fallTarget,Time.deltaTime);
-        Debug.Log("deathanimation");
+        GetComponent<AnimationController>().InvokeTrigger("Death");
+        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 0, transform.position.z), 5f);
+        GetComponent<Rigidbody>().useGravity = true;
     }
 
     #endregion

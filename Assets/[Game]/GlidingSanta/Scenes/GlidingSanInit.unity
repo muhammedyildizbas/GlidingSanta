@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e864bcbbd4cedae439c5e794c0ee08d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBoost: 20
+  maxBoost: 15
 --- !u!114 &605864376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +198,7 @@ MonoBehaviour:
   - {fileID: 3238102725378215511, guid: 7c88f45b9bbd32c42bd8c11cac862b65, type: 3}
   - {fileID: 5673889177547557849, guid: cb711921040efc141be6966bbda1a8d2, type: 3}
   - {fileID: 8632628080642180044, guid: 25575f359070a2549953591eb9881753, type: 3}
+  activePresents: []
 --- !u!114 &605864377
 MonoBehaviour:
   m_ObjectHideFlags: 0

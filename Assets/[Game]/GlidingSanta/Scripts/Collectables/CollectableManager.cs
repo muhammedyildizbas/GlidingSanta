@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class CollectableManager : Singleton<CollectableManager>
 {
-
     public List<GameObject> Presents;
+    public List<GameObject> activePresents;
     private void OnEnable()
     {
         if (Managers.Instance == null)
             return;
+        activePresents = new List<GameObject>();
     }
 
     private void OnDisable()
@@ -34,7 +35,7 @@ public class CollectableManager : Singleton<CollectableManager>
         for (int i = 0; i < targetStarCount; i++)
         {
             int RandomPresents = Random.Range(0, Presents.Count);
-            Instantiate(Presents[RandomPresents], lane + Vector3.back, Quaternion.identity);
+            activePresents.Add(Instantiate(Presents[RandomPresents], lane + Vector3.back, Quaternion.identity));
 
             yield return new WaitForSeconds(0.2f);
         }
