@@ -22,7 +22,11 @@ public class CollectableManager : Singleton<CollectableManager>
     public void CreateStars(int lane)
     {
         //int RandomLanes = Random.Range(0, TrackManager.Instance.Lanes.Count);
+<<<<<<< HEAD
         int targetStarCount = Random.Range(3, 5);  /*oluşturulacak yıldız sayısı*/
+=======
+        int targetStarCount = Random.Range(4,6);  /*oluşturulacak yıldız sayısı*/
+>>>>>>> origin/Burak
         
         StartCoroutine(CreateStarsCo(TrackManager.Instance.Lanes[lane].position, targetStarCount));
         Debug.Log("Coroutine başladı");
