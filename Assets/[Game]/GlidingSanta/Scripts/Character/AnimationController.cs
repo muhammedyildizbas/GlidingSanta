@@ -9,8 +9,8 @@ public class AnimationController : MonoBehaviour
     public Animator Animator { get { return (animator == null) ? animator = GetComponent<Animator>() : animator; } }
 
     Character character;
-    public Character Character { get { return (character == null) ? character = FindObjectOfType<Character>().GetComponent<Character>() : character; } } 
- 
+    public Character Character { get { return (character == null) ? character = FindObjectOfType<Character>().GetComponent<Character>() : character; } }
+
     //private void OnEnable()
     //{
     //    character.OnCharacterHit.AddListener(() => InvokeTrigger("Death"));

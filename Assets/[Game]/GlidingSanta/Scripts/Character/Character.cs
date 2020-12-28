@@ -6,9 +6,11 @@ public class Character : MonoBehaviour
 {
     Rigidbody _rigidbody;
     bool gameStarted = false;
-    public float timer=3f;
+    public float timer = 3f;
+    public GameObject CannonPart;
+    public GameObject WindPart;
     public Rigidbody Rigidbody { get { return (_rigidbody == null) ? _rigidbody = GetComponent<Rigidbody>() : _rigidbody; } }
-    public float screenLimit=7;
+    public float screenLimit = 7;
     Touch touch;
     private Vector3 moveVector;
     private Vector3 CurrentAngle;
@@ -16,14 +18,16 @@ public class Character : MonoBehaviour
     public float speed;
     public float ThrowSpeed = 5f;
     public float AngleSpeed = 0;
-  
+
     private CharacterController controller;
 
     public GameObject particles; //particle sistem için
     public bool isControllable;
+    //public bool isClickedForStartGame = false;
 
     private void Start()
     {
+
         StartCoroutine(WaitForStartCoroutine());
         isControllable = true;
         controller = GetComponent<CharacterController>();
@@ -33,14 +37,17 @@ public class Character : MonoBehaviour
     }
     private void Update()
     {
-       ThrowPlayerAtStart();
+        Starter();
+        if (GameManager.Instance.isClickedForStartGame == true)
+        {
+            ThrowPlayerAtStart();
 
-       if (!gameStarted)
-           return;
- 
-        Movement();
-        BoostController();
+            if (!gameStarted)
+                return;
 
+            Movement();
+            BoostController();
+        }
     }
     public void BoostController()
     {
@@ -64,7 +71,7 @@ public class Character : MonoBehaviour
         moveVector.x = Input.GetAxisRaw("Horizontal");
         Rigidbody.velocity = (moveVector) * Time.deltaTime * speed;
 
-        if(moveVector.x > 0)
+        if (moveVector.x > 0)
         {
             //TargetAngle = new Vector3(transform.rotation.x, BendRight, transform.rotation.z);
             CurrentAngle = new Vector3(
@@ -75,7 +82,7 @@ public class Character : MonoBehaviour
             transform.eulerAngles = CurrentAngle;
 
         }
-        if(moveVector.x < 0)
+        if (moveVector.x < 0)
         {
             //TargetAngle = new Vector3(transform.rotation.x, BendLeft, transform.rotation.z);
             CurrentAngle = new Vector3(
@@ -116,19 +123,19 @@ public class Character : MonoBehaviour
     }
 
     #region Collectable Trigger
-    
+
     private void OnTriggerEnter(Collider other)
     {
         ICollectable collectedObj = other.GetComponent<ICollectable>();
 
         if (collectedObj != null)
         {
-            
-            GameObject particle = Instantiate(particles, transform.position + new Vector3(0,0,5),Quaternion.identity);
+
+            GameObject particle = Instantiate(particles, transform.position + new Vector3(0, 0, 5), Quaternion.identity);
             particle.GetComponent<ParticleSystem>().Play();
 
             collectedObj.Collect();
-            Destroy(particle.gameObject,1);
+            Destroy(particle.gameObject, 1);
         }
         if (other.gameObject.tag == "Wall")
         {
@@ -137,7 +144,7 @@ public class Character : MonoBehaviour
             FallDown();
             Debug.Log("death");
             FindObjectOfType<CanvasController>().GameOverPanel();
-            
+
         }
 
     }
@@ -147,8 +154,21 @@ public class Character : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 0, transform.position.z), 5f);
         GetComponent<Rigidbody>().useGravity = true;
     }
+    public void Starter()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameManager.Instance.isClickedForStartGame = true;
+            GetComponent<AnimationController>().InvokeTrigger("Start");
+            Instantiate(CannonPart, transform.position, Quaternion.identity);
+            Instantiate(WindPart, transform.position, Quaternion.identity,transform);
 
+
+
+        }
+
+    }
     #endregion
 
-    
+
 }
