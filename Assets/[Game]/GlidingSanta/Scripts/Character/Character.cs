@@ -21,9 +21,11 @@ public class Character : MonoBehaviour
 
     public GameObject particles; //particle sistem için
     public bool isControllable;
+    //public bool isClickedForStartGame = false;
 
     private void Start()
     {
+        
         StartCoroutine(WaitForStartCoroutine());
         isControllable = true;
         controller = GetComponent<CharacterController>();
@@ -33,14 +35,17 @@ public class Character : MonoBehaviour
     }
     private void Update()
     {
-       ThrowPlayerAtStart();
+        Starter();
+        if (GameManager.Instance.isClickedForStartGame == true)
+        {
+            ThrowPlayerAtStart();
 
-       if (!gameStarted)
-           return;
- 
-        Movement();
-        BoostController();
+            if (!gameStarted)
+                return;
 
+            Movement();
+            BoostController();
+        }
     }
     public void BoostController()
     {
@@ -147,7 +152,14 @@ public class Character : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 0, transform.position.z), 5f);
         GetComponent<Rigidbody>().useGravity = true;
     }
-
+    public void Starter()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameManager.Instance.isClickedForStartGame = true;
+            GetComponent<AnimationController>().InvokeTrigger("Start");
+        }
+    }
     #endregion
 
     

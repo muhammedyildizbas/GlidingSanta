@@ -21,7 +21,7 @@ public class AnimationController : MonoBehaviour
     //}
 
     public void InvokeTrigger(string value)
-    {
-        Animator.SetTrigger(value);
+    {  
+            Animator.SetTrigger(value);
     }
 }

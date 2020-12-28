@@ -6,6 +6,10 @@ public class TileMovementController : MonoBehaviour
 {
     private void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z -TileManager.Instance.tileSpeed*Time.deltaTime);
+        if(GameManager.Instance.isClickedForStartGame == true)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - TileManager.Instance.tileSpeed * Time.deltaTime);
+        }
+        
     }
 }
