@@ -9,12 +9,6 @@ EditorBuildSettings:
     path: Assets/[Game]/GlidingSanta/Scenes/MenuLevel.unity
     guid: e0a5227450c0195419bb2af560fbf51d
   - enabled: 1
-    path: Assets/[Game]/GlidingSanta/Scenes/GlidingSanInit.unity
-    guid: d201f795557980148a4ab2369862036e
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
     path: Assets/[Game]/GlidingSanta/Scenes/GlidingSantaGame.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
