@@ -32,7 +32,7 @@ public class TileManager : Singleton<TileManager>
 
         for (int i = 0; i < 5; i++)
         {
-            SpawnTile(i * tileDistance, false);
+            SpawnTile((i+1) * tileDistance, false);
         }
         //For the prefab positions to be spaced.
         //And because of the for loop we call SpawnTile 5 times so there will be 5 active prefab when we use "pool[randomTile].SetActive(true);"

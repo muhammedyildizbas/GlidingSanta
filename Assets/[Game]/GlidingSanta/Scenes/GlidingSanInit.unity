@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skor: 0
+  isClickedForStartGame: 0
 --- !u!4 &605864374
 Transform:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e864bcbbd4cedae439c5e794c0ee08d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBoost: 15
+  maxBoost: 20
 --- !u!114 &605864376
 MonoBehaviour:
   m_ObjectHideFlags: 0
