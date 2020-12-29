@@ -2015,7 +2015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 41682293, guid: 0cf1da36dfe8293489e81ca3eed34504, type: 3}
       propertyPath: speed
-      value: 500
+      value: 3900
       objectReference: {fileID: 0}
     - target: {fileID: 41682293, guid: 0cf1da36dfe8293489e81ca3eed34504, type: 3}
       propertyPath: particles
